@@ -1,5 +1,5 @@
 
-cd "/Users/yoshi/Dropbox/Google Drive/Coding/Python/Linear_Regression/Multiple8"
+
 
 
 
