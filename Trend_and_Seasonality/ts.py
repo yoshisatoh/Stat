@@ -15,7 +15,8 @@
 ########## Input Data File(s)
 #
 #airline-passengers.csv
-#
+# or
+#covid19.csv
 #
 ########## Usage Instructions
 #
