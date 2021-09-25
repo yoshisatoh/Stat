@@ -8,8 +8,8 @@
 # Last Updated: 2021/09/25
 #
 # Github:
-# https://github.com/yoshisatoh/Stats/tree/main/Trend_and_Seasonality/ts.py
-# https://github.com/yoshisatoh/Stats/blob/main/Trend_and_Seasonality/ts.py
+# https://github.com/yoshisatoh/Stat/tree/main/Trend_and_Seasonality/ts.py
+# https://github.com/yoshisatoh/Stat/blob/main/Trend_and_Seasonality/ts.py
 #
 #
 ########## Input Data File(s)
