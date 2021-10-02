@@ -8,8 +8,8 @@
 # Last Updated: 2021/09/25
 #
 # Github:
-# https://github.com/yoshisatoh/Stats/tree/main/Linear_Regression/mlrrwstnm.py
-# https://github.com/yoshisatoh/Stats/blob/main/Linear_Regression/mlrrwstnm.py
+# https://github.com/yoshisatoh/Stat/tree/main/Linear_Regression/mlrrwstnmslr.py
+# https://github.com/yoshisatoh/Stat/blob/main/Linear_Regression/mlrrwstnmslr.py
 #
 #
 ########## Input Data Files
