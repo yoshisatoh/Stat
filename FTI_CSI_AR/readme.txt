@@ -6,6 +6,7 @@
 #If you have your own y.csv file, then this part can be commented out.
 python py00generatedatay.py
 
+##########
 
 python
 
@@ -43,6 +44,14 @@ from py13csipctrank import *
 from py20ar import *
 
 
+quit()
+
+python py99results.py
+
+
+
+
+##########
 
 
 ### References
