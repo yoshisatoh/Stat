@@ -51,8 +51,8 @@ sigma = 0.20/(250)**0.50 # daily return: standard deviation
 np.random.seed(0)       # set 0 to fix the result of random sampling
 
 A     = np.random.normal(mu, sigma, size=(250*5, 1))
-B     = A * 1.20 + np.random.normal(0, 0.05/(300)**0.50, size=(250*5, 1))
-C     = B * 0.80 + np.random.normal(0, 0.05/(300)**0.50, size=(250*5, 1))
+B     = A * 1.20 + np.random.normal(0, 0.05/(250)**0.50, size=(250*5, 1))
+C     = B * 0.80 + np.random.normal(0, 0.05/(250)**0.50, size=(250*5, 1))
 
 #print(len(A))
 #print(len(B))
