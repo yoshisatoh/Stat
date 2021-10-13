@@ -16,6 +16,10 @@ CSI = CSI.dropna(how="any")
 print(CSI)
 CSI['CSI'] = CSI['FTI'] / CSI['MSI']
 print(CSI)
+
+CSI = CSI.drop('FTI', axis=1)
+CSI = CSI.drop('MSI', axis=1)
+
 CSI.to_csv("CSI.csv")
 
 #print(FTI_pct_rank_dma)

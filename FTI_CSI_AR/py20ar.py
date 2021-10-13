@@ -55,10 +55,12 @@ for i in range(int(len(ypca)-dma+1)):
 i = 0
 
 #ypca3 = ypca3.rename(columns = {ypca3.columns[0]: "Trade Date", ypca3.columns[1]: "AR"})
-ypca3 = ypca3.rename(columns = {ypca3.columns[0]: "Day", ypca3.columns[1]: "AR"})
+#ypca3 = ypca3.rename(columns = {ypca3.columns[0]: "Day", ypca3.columns[1]: "AR"})
+ypca3 = ypca3.rename(columns = {ypca3.columns[0]: "Date", ypca3.columns[1]: "AR"})
 
 #ypca3.set_index("Trade Date",inplace=True)
-ypca3.set_index("Day",inplace=True)
+#ypca3.set_index("Day",inplace=True)
+ypca3.set_index("Date",inplace=True)
 
 #print(ypca3[['Trade Date', 'AR']])
 #print(ypca3[['Day', 'AR']])
