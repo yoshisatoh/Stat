@@ -4,8 +4,8 @@
 #
 #  All rights reserved.
 #
-# Created:      2021/09/25
-# Last Updated: 2021/09/25
+# Created:      2021/10/21
+# Last Updated: 2021/10/21
 #
 # Github:
 # https://github.com/yoshisatoh/Stat/tree/main/Linear_Regression/X_raw_standardized_normalized/multi_class/L1_and_L2/mlrrwstnml1l2.py
@@ -18,7 +18,7 @@
 #
 ########## Usage Instructions
 #
-#python3 mlrrwstnml1l2.py (arg_df_name: csv data file) (arg_y_col: dependent/explained variable Y) (arg_test_size: test data size)
+#python mlrrwstnml1l2.py (arg_df_name: csv data file) (arg_y_col: dependent/explained variable Y) (arg_test_size: test data size)
 #
 #For instance,
 #
