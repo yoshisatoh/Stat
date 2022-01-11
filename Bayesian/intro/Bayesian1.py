@@ -9,7 +9,7 @@
 #
 #
 # Github:
-# https://github.com/yoshisatoh/Stats/tree/main/Bayesian/Bayesian1.py
+# https://github.com/yoshisatoh/Stat/blob/main/Bayesian/intro/Bayesian1.py
 '''
 References
 
