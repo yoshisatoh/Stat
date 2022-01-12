@@ -192,6 +192,9 @@ The plot shows that the posterior and likelihood are virtually identical, which 
 num_alerts = 32
 num_tested = 100
 #
+#num_alerts = 64
+#num_tested = 100
+#
 #num_alerts = 312
 #num_tested = 1000
 #
