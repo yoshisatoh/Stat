@@ -31,35 +31,66 @@ https://statsthinking21.github.io/statsthinking21-python/10-BayesianStatistics.h
 #pip install --upgrade nhanes --trusted-host pypi.org --trusted-host files.pythonhosted.org
 #pip install --upgrade rpy2 --trusted-host pypi.org --trusted-host files.pythonhosted.org
 #
-# If it's successful, then you can repeat the same command for other libraries (i.e., numpy, pandas, and matplotlib.pyplot).
+# If it's successful, then you can repeat the same command for other libraries (i.e., numpy, pandas, scipy, and matplotlib).
 #
 #
-# In some environment, the following might work
+# In some Python 3 environment, the following might work
 ##### pip3 install --upgrade nhanes
 ##### pip3 install --upgrade rpy2
 
 
 
 
-########## Applying Bayes’ theorem: A simple example
-
-#Sensitivity (True Positive Rate) refers to the proportion of those who have the condition (when judged by the ‘Gold Standard’) that received a positive result on this test.
-#Specificity (True Negative Rate) refers to the proportion of those who do not have the condition (when judged by the ‘Gold Standard’) that received a negative result on this test.
-
-sensitivity = 0.90
-specificity = 0.99
+########## [1] Applying Bayes’ theorem: A simple example
 
 '''
-Let’s say that the local rate of symptomatic individuals who actually are infected with COVID-19 is 7.4% (as reported on July 10, 2020 for San Francisco); thus, our prior probability that someone with symptoms actually has COVID-19 is .074. 
+Sensitivity (True Positive Rate) refers to the proportion of those who have the condition (when judged by the ‘Gold Standard’) that received a positive result on this test.
+Specificity (True Negative Rate) refers to the proportion of those who do not have the condition (when judged by the ‘Gold Standard’) that received a negative result on this test.
+
+On the contrary,
+False Positive: It is evaluated as Positive (when juddged by the ‘Gold Standard’), but it actually iS FALSE.
+False Negative: It is evaluated as Negative (when juddged by the ‘Gold Standard’), but it actually iS POSITIVE.
+'''
+
+
+##### Arbitrary Parameters (You can choose values which suit your circumstances.)
+#
+#
+#True Positive Rate (Likelihood: This is an estimate, but NOT necessary the truth, the whole truth, and nothing but the truth as actual True Positive Rate is unknown.)
+sensitivity = 0.90
+likelihood = sensitivity  # p(post-alert investigation | alert triggered)
+#
+#
+#True Negative Rate
+specificity = 0.99
+#
+#
+'''
+Let’s say observed rate of trade surverillance alerts which actually are valid and significant alerts is 7.4%.
+That is, 7.4% of all the triggered alerts are true positives and worth investigating.
+Please note that fired, but not significant alerts are regarded as negative in this case.
+Thus, our prior probability that alerts actually has significanse is 0.074. 
 '''
 prior = 0.074
+#
+#####
 
-likelihood = sensitivity  # p(test|disease present) 
 
-#marginal_likelihood = (True Positive) * (Positive) + (1- True Negative) * (Negative) = (True Positive) * (Positive) + ((Negative) - (True Negative * Negative)) = Positive Rate
+#marginal_likelihood
+#= sensitivity * prior + (1 - specificity) * (1 - prior)
+#= (True Positive) * (Positive) + (1- True Negative) * (Negative)
+#= (True Positive) * (Positive) + ((False Negative) * (Negative))
+#= All Positive Cases including False Negatives
+#
 marginal_likelihood = sensitivity * prior + (1 - specificity) * (1 - prior)
 
+
+#(True Positive) * prior = posterior * marginal_likelihood
+#likelihood      * prior = posterior * marginal_likelihood
 posterior = (likelihood * prior) / marginal_likelihood
+#
+#prior = True Positives + False Positives
+#
 #posterior
 print(posterior)
 #0.8779330345373055
@@ -74,7 +105,7 @@ import matplotlib.pyplot as plt
 
 
 def compute_posterior(prior, sensitivity, specificity):
-    likelihood = sensitivity  # p(test|disease present) 
+    likelihood = sensitivity  # p(post-alert investigation | alert triggered) 
     marginal_likelihood = sensitivity * prior + (1 - specificity) * (1 - prior)
     posterior = (likelihood * prior) / marginal_likelihood
     return(posterior)
@@ -90,28 +121,38 @@ _ = plt.ylabel('posterior')
 plt.savefig('Fig1.png')
 plt.show()
 '''
-This figure highlights a very important general point about diagnostic testing: Even when the test has high specificity, if a condition is rare then most positive test results will be false positives.
+This figure highlights a very important general point.
+Even when the trade surveillance and alerting have high specificity (True Negative Rate),
+if a condition (=alert generation) is rare then most positive results will be false positives.
 '''
 
 
 
 
-########## Estimating posterior distributions
+########## [2] Estimating posterior distributions
 '''
-In this example we will look at how to estimate entire posterior distributions.
-We will implement the drug testing example from the book. In that example, we administered a drug to 100 people, and found that 64 of them responded positively to the drug. What we want to estimate is the probability distribution for the proportion of responders, given the data. For simplicity we started with a uniform prior; that is, all proprtions of responding are equally likely to begin with. In addition, we will use a discrete probability distribution; that is, we will estimate the posterior probabiilty for each particular proportion of responders, in steps of 0.01. This greatly simplifies the math and still retains the main idea.
+In this example we will look at how to estimate entire posterior distributions, rather than single points of estimates.
+We apply alert rules to (=test) 100 orders/trades, and found that 64 of them trigerred alerts (positives).
+What we want to estimate is the probability distribution for the proportion of alerts, given the data.
+For simplicity, we started with a uniform prior; that is, all proprtions of alerts are equally likely to begin with.
+In addition, we will use a discrete probability distribution; that is, we will estimate the posterior probabiilty for each particular proportion of alerts, in steps of 0.01.
+This greatly simplifies the math and still retains the main idea.
 '''
 
 
 #+
-num_responders = 64
+##### Arbitrary Parameters (You can choose values which suit your circumstances.)
+#
+num_alerts = 64
 num_tested = 100
+#
+#####
 
 bayes_df = pd.DataFrame({'proportion': np.arange(0.0, 1.01, 0.01)})
 
 # compute the binomial likelihood of the observed data for each
 # possible value of proportion
-bayes_df['likelihood'] = scipy.stats.binom.pmf(num_responders,
+bayes_df['likelihood'] = scipy.stats.binom.pmf(num_alerts,
                                                num_tested,
                                                bayes_df['proportion'])
 # The prior is equal for all possible values
@@ -146,14 +187,18 @@ The plot shows that the posterior and likelihood are virtually identical, which 
 
 #+
 
-num_responders = 32
+##### Arbitrary Parameters (You can choose values which suit your circumstances.)
+#
+num_alerts = 32
 num_tested = 100
 #
-#num_responders = 312
+#num_alerts = 312
 #num_tested = 1000
 #
-#num_responders = 3120
+#num_alerts = 3120
 #num_tested = 10000
+#
+#####
 
 
 # copy the posterior from the previous analysis and rename it as the prior
@@ -163,7 +208,7 @@ study2_df = bayes_df[['proportion', 'posterior']].rename(columns={'posterior': '
 # compute the binomial likelihood of the observed data for each
 # possible value of proportion
 
-study2_df['likelihood'] = scipy.stats.binom.pmf(num_responders,
+study2_df['likelihood'] = scipy.stats.binom.pmf(num_alerts,
                                                num_tested,
                                                study2_df['proportion'])
 
