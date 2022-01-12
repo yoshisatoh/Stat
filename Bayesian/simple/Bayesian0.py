@@ -145,8 +145,16 @@ The plot shows that the posterior and likelihood are virtually identical, which 
 
 
 #+
-num_responders = 312
-num_tested = 1000
+
+num_responders = 32
+num_tested = 100
+#
+#num_responders = 312
+#num_tested = 1000
+#
+#num_responders = 3120
+#num_tested = 10000
+
 
 # copy the posterior from the previous analysis and rename it as the prior
 
