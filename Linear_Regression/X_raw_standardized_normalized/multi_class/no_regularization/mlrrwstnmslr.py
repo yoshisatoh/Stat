@@ -1,11 +1,11 @@
 #################### Multiple (and Single) Linear Regression of Raw Data, Standardized Data, and Normalized Data ####################
 #
-#  (C) 2021, Yoshimasa (Yoshi) Satoh, CFA 
+#  (C) 2021-2023, Yoshimasa (Yoshi) Satoh, CFA 
 #
 #  All rights reserved.
 #
 # Created:      2021/09/25
-# Last Updated: 2021/09/25
+# Last Updated: 2023/11/05
 #
 # Github:
 # https://github.com/yoshisatoh/Stat/tree/main/Linear_Regression/X_raw_standardized_normalized/multi_class/no_regularization/mlrrwstnmslr.py
@@ -444,7 +444,9 @@ YpredSingle = YpredSingle.rename(columns={xname: 'YpredSingle'})
 #Index(['YpredSingle'], dtype='object')
 
 Xconv_Y_Ypred_YpredSingle = pd.concat([Xconv_Y_Ypred, YpredSingle], axis=1)
-
+#
+Xconv_Y_Ypred_YpredSingle = Xconv_Y_Ypred_YpredSingle.rename({0:'Y'},axis='columns')
+#
 Xconv_Y_Ypred_YpredSingle.to_csv('Xconv_Y_Ypred_YpredSingle.csv', header=True, index=True)
 
 

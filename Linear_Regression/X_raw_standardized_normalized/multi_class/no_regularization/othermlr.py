@@ -1,11 +1,11 @@
 #################### Multiple Linear Regression (by selected two dependent variables x1 and x2) ####################
 #
-#  (C) 2021, Yoshimasa (Yoshi) Satoh, CFA 
+#  (C) 2021-2023, Yoshimasa (Yoshi) Satoh, CFA 
 #
 #  All rights reserved.
 #
 # Created:      2021/09/25
-# Last Updated: 2021/09/25
+# Last Updated: 2023/11/05
 #
 # Github:
 # https://github.com/yoshisatoh/Stat/tree/main/Linear_Regression/X_raw_standardized_normalized/multi_class/no_regularization/othermlr.py
@@ -51,7 +51,7 @@ xname2  = str(sys.argv[6])    # e.g., LSAT (one of multiple indepdent variables)
 ########## data load
 
 df = pd.read_csv(dfname, index_col=0)
-#print(df)
+print(df)
 '''
          CRIM        ZN     INDUS      CHAS  ...     LSTAT     Y      Ypred  YpredSingle
 0   -0.419782  0.284830 -1.287909 -0.272599  ... -1.075562  24.0  30.003843    23.639060
@@ -134,11 +134,13 @@ dfb = pd.read_csv(clifC, delim_whitespace=True)
 #)
 #<class 'float'>
 
-b1 = float(dfb[dfb.eval(dfb.columns[0]) == xname1][dfb.columns[1]])
+b1 = float(dfb[dfb.Name == xname1][dfb.columns[1]])
+##b1 = float(dfb[dfb.eval(dfb.columns[0]) == xname1][dfb.columns[1]])
 #print(b1)
 #2.67423
 
-b2 = float(dfb[dfb.eval(dfb.columns[0]) == xname2][dfb.columns[1]])
+b2 = float(dfb[dfb.Name == xname2][dfb.columns[1]])
+##b2 = float(dfb[dfb.eval(dfb.columns[0]) == xname2][dfb.columns[1]])
 #print(b2)
 #-3.7436269999999996
 
